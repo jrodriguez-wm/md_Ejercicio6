@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
         alertDialog.show();
 
+        alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorAlertDialog));
+        alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorAlertDialog));
+
+
+
 
     }
 }
