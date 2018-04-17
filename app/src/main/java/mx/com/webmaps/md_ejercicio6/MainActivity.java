@@ -1,9 +1,11 @@
 package mx.com.webmaps.md_ejercicio6;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -14,44 +16,29 @@ public class MainActivity extends AppCompatActivity {
     String[] items = {" Easy ", " Medium ", " Hard ", " Very Hard "};
     String result="";
 
+    ProgressDialog dialog;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        builder = new AlertDialog.Builder(MainActivity.this, R.style.ConfirmationDialogTheme);
 
-        builder.setTitle("Select the difficulty level");
+        dialog = new ProgressDialog(MainActivity.this);
 
-        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                result = items[which];
-            }
-        });
+        dialog.setTitle("Progress Dialog");
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"Your option is "+ result, Toast.LENGTH_SHORT).show();
+        dialog.setMessage("Please Wait...");
 
-            }
-        });
+        dialog.show();
 
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-
-        alertDialog = builder.create();
-        alertDialog.show();
-
+        //dialog.cancel();
 
 
         //alertDialogExample();
+        //confirmDialogExample();
 
     }
 
@@ -82,6 +69,38 @@ public class MainActivity extends AppCompatActivity {
         //alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorAlertDialog));
         //alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorAlertDialog));
 
+    }
+
+    public  void confirmDialogExample(){
+        builder = new AlertDialog.Builder(MainActivity.this, R.style.ConfirmationDialogTheme);
+
+        builder.setTitle("Select the difficulty level");
+
+        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                result = items[which];
+            }
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"Your option is "+ result, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+
+        alertDialog = builder.create();
+        alertDialog.show();
     }
 
 
